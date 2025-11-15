@@ -9,9 +9,13 @@ def _gen_shar_stub_impl(ctx):
     # For //example/package:binary:
     # src.package == "example/package"
     # src.name == "binary"
-    src_target_name = "/".join([src.package, src.name])
+    src_path = ["."]
+    if src.package:
+        src_path += [src.package]
+    src_path += [src.name]
+    src_target_name = "/".join(src_path)
     subst = {
-        "{{BINARY_RELATIVE_PATH}}": "/".join(["_main", src_target_name]),
+        "{{BINARY_RELATIVE_PATH}}": src_target_name,
         "{{RUNFILES_LOCAL_PATH}}": "{}.runfiles".format(src.name),
     }
 

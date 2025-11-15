@@ -26,4 +26,5 @@ def shar_binary(name, **kw):
         cmd="""
             cat $(location :{name}_stub) $(locations :{name}_tar) > $@ && chmod +x $@
         """.format(name=name),
+        executable = True,
     )
