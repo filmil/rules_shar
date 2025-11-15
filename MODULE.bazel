@@ -1,5 +1,5 @@
 module(
-    name = "bazel_rules_shar",
+    name = "rules_shar",
     version = "0.0.0",
 )
 

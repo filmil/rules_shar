@@ -7,7 +7,7 @@ def sh_binary(name, **kw):
     _sh_binary(name=name, **kw)
     gen_shar_stub(
         name="{}_stub".format(name),
-        src=":{}".format(name)
+        src=":{}".format(name),
     )
     pkg_tar(
         name="{}_tar".format(name),

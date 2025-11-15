@@ -1,13 +1,10 @@
-load(":macros.bzl", "sh_binary")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
-exports_files(["stub.bash"])
+exports_files(["stub_template.bash"])
 
-sh_binary(
-    name = "binary",
+sh_test(
+    name = "test",
     srcs = [
-        "binary.bash",
-    ],
-    deps = [
-        "//lib:lib",
+        "test.sh",
     ],
 )

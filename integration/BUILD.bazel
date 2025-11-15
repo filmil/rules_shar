@@ -1,0 +1,25 @@
+load("@rules_shar//:macros.bzl", "sh_binary")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+sh_binary(
+    name = "binary",
+    srcs = [
+        "binary.bash",
+    ],
+    deps = [
+        "//lib:lib",
+    ],
+)
+
+sh_test(
+    name = "test",
+    srcs = [
+        ":test.bash",
+    ],
+    args = [
+        "$(location :binary_shar)",
+    ],
+    data = [
+        ":binary_shar",
+    ],
+)
