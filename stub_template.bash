@@ -5,7 +5,6 @@
 # - RUNFILES_LOCAL_PATH: {{RUNFILES_LOCAL_PATH}}
 # - BINARY_RELATIVE_PATH: {{BINARY_RELATIVE_PATH}}
 set -e
-set -x
 
 command -v awk >/dev/null 2>&1 || ( echo "no awk" ; exit 1)
 command -v tar >/dev/null 2>&1 || ( echo "no tar" ; exit 1)
