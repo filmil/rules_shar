@@ -15,8 +15,8 @@ To use the rules, add the following to your `MODULE.bazel` file:
 bazel_dep(name = "rules_shar", version = "0.0.0") # Select your version, of course.
 ```
 
-Then, in your `BUILD.bazel` file, you can use the `sh_binary` rule to create a self-extracting archive,
-as a drop-in replacement for the rule `sh_binary`.
+Then, in your `BUILD.bazel` file, you can use the `shar_binary` rule to create
+a self-extracting archive, as a drop-in replacement for the rule `sh_binary`.
 
 ```bzl
 load("@rules_shar//:rules.bzl", "shar_binary")
