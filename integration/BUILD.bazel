@@ -22,4 +22,5 @@ sh_test(
     data = [
         ":binary_shar",
     ],
+    size = "small",
 )

@@ -7,4 +7,5 @@ sh_test(
     srcs = [
         "test.sh",
     ],
+    size = "small",
 )
