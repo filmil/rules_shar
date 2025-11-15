@@ -1,0 +1,13 @@
+load(":macros.bzl", "sh_binary")
+
+exports_files(["stub.bash"])
+
+sh_binary(
+    name = "binary",
+    srcs = [
+        "binary.bash",
+    ],
+    deps = [
+        "//lib:lib",
+    ],
+)
