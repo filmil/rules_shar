@@ -6,11 +6,16 @@ def _gen_shar_stub_impl(ctx):
         "{}.sh".format(name))
 
     src = ctx.attr.src.label
+    # For //example/package:binary:
+    # src.package == "example/package"
+    # src.name == "binary"
     src_target_name = "/".join([src.package, src.name])
     subst = {
         "{{BINARY_RELATIVE_PATH}}": src_target_name,
+        # Apparently, runfiles are always at the top level
+        # in the archive.
         "{{RUNFILES_LOCAL_PATH}}":
-            "{}.runfiles/_main".format(src_target_name),
+            "{}.runfiles/_main".format(src.name),
     }
 
     template_file = ctx.attr._stub_template.files.to_list()[0]
