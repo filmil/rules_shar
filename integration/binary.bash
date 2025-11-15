@@ -3,4 +3,4 @@
 echo "hello world! from $PWD"
 # All libraries used in this script are relative
 # to ${RUNFILES_DIR}
-${RUNFILES_DIR}/lib/lib.sh
+${RUNFILES_DIR}/_main/lib/lib.sh
