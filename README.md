@@ -19,9 +19,9 @@ Then, in your `BUILD.bazel` file, you can use the `sh_binary` rule to create a s
 as a drop-in replacement for the rule `sh_binary`.
 
 ```bzl
-load("@rules_shar//:rules.bzl", "sh_binary")
+load("@rules_shar//:rules.bzl", "shar_binary")
 
-sh_binary(
+shar_binary(
     name = "binary",
     srcs = [
         "binary.sh",
@@ -35,8 +35,14 @@ sh_binary(
 )
 ```
 
-This will create the target `:binary`, but also the target `:binary_shar`. The former
-is the usual shell binary, while the latter is an archive containing all the runfiles
-defined by `:binary`, and when started behaves the same as `:binary`.  Mostly this
-means you get a standalone executable that you may use elsewhere.
+This will create the target `:binary`, but also the target `:binary_shar`. The
+former is the usual shell binary, while the latter is an archive containing all
+the runfiles defined by `:binary`, and when started behaves the same as
+`:binary`.  Mostly this means you get a standalone executable that you may use
+elsewhere.
 
+If you want a drop-in replacement for `sh_binary`, you can overload the name:
+
+```python
+load("@rules_shar//:rules.bzl", sh_binary = "shar_binary")
+```

@@ -5,6 +5,7 @@
 # - RUNFILES_LOCAL_PATH: {{RUNFILES_LOCAL_PATH}}
 # - BINARY_RELATIVE_PATH: {{BINARY_RELATIVE_PATH}}
 set -e
+set -x
 
 command -v awk >/dev/null 2>&1 || ( echo "no awk" ; exit 1)
 command -v tar >/dev/null 2>&1 || ( echo "no tar" ; exit 1)
@@ -14,13 +15,15 @@ DIR="$(mktemp -d -t shar.binary-XXXXXX)"
 function cleanup() {
 		rm -fr "${DIR}"
 }
-trap cleanup EXIT
+if [[ ${DEBUG} != "1" ]]; then
+	trap cleanup EXIT
+fi
 
 readonly FILE_PATH="$0"
 readonly ABSOLUTE_PATH=$(cd "$(dirname "$FILE_PATH")" && pwd -P)/"$(basename "$FILE_PATH")"
 
 cd "${DIR}"
-export RUNFILES_DIR="$PWD{{RUNFILES_LOCAL_PATH}}"
+MY_RUNFILES_DIR="$PWD/{{RUNFILES_LOCAL_PATH}}"
 (
 	readonly ARCHIVE=$(awk '/^__ARCHIVE_FOLLOWS__/ {print NR + 1; exit 0; }' "$ABSOLUTE_PATH")
 	# Skip the stub and pipe the rest (the tarball) to tar
@@ -28,6 +31,7 @@ export RUNFILES_DIR="$PWD{{RUNFILES_LOCAL_PATH}}"
 )
 cd - >/dev/null
 
-"${RUNFILES_DIR}{{BINARY_RELATIVE_PATH}}"
+RUNFILES_DIR="${MY_RUNFILES_DIR}" \
+  "${MY_RUNFILES_DIR}/{{BINARY_RELATIVE_PATH}}"
 exit 0
 __ARCHIVE_FOLLOWS__

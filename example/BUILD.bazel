@@ -7,7 +7,7 @@ sh_binary(
         "binary.bash",
     ],
     deps = [
-        "//lib:lib",
+        "//example/lib:lib",
     ],
 )
 
