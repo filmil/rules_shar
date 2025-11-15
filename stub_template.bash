@@ -22,14 +22,14 @@ readonly FILE_PATH="$0"
 readonly ABSOLUTE_PATH=$(cd "$(dirname "$FILE_PATH")" && pwd -P)/"$(basename "$FILE_PATH")"
 
 cd "${DIR}"
-MY_RUNFILES_DIR="$PWD/{{RUNFILES_LOCAL_PATH}}/_main"
+RUNFILES_DIR="$PWD/{{RUNFILES_LOCAL_PATH}}"
 (
 	readonly ARCHIVE=$(awk '/^__ARCHIVE_FOLLOWS__/ {print NR + 1; exit 0; }' "$ABSOLUTE_PATH")
 	# Skip the stub and pipe the rest (the tarball) to tar
 	tail -n +$ARCHIVE "$ABSOLUTE_PATH" | tar x
 )
 
-cd "${MY_RUNFILES_DIR}"
-"{{BINARY_RELATIVE_PATH}}"
+cd "${RUNFILES_DIR}/_main"
+RUNFILES_DIR="${RUNFILES_DIR}" "{{BINARY_RELATIVE_PATH}}"
 exit 0
 __ARCHIVE_FOLLOWS__
