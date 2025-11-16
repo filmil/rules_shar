@@ -4,6 +4,7 @@
 # Params:
 # - RUNFILES_LOCAL_PATH: {{RUNFILES_LOCAL_PATH}}
 # - BINARY_RELATIVE_PATH: {{BINARY_RELATIVE_PATH}}
+# - ARGS: {{ARGS}}
 set -e
 
 command -v awk >/dev/null 2>&1 || ( echo "no awk" ; exit 1)
@@ -30,6 +31,6 @@ RUNFILES_DIR="$PWD/{{RUNFILES_LOCAL_PATH}}"
 )
 
 cd "${RUNFILES_DIR}/_main"
-RUNFILES_DIR="${RUNFILES_DIR}" "{{BINARY_RELATIVE_PATH}}"
+RUNFILES_DIR="${RUNFILES_DIR}" "{{BINARY_RELATIVE_PATH}}" {{ARGS}}
 exit 0
 __ARCHIVE_FOLLOWS__
