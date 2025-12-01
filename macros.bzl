@@ -2,8 +2,8 @@ load("@rules_shell//shell:sh_binary.bzl", "sh_binary")
 load(":rules.bzl", "gen_shar_stub")
 load("@rules_pkg//pkg/private/tar:tar.bzl", "pkg_tar")
 
-def shar_binary(name, args=None, **kw):
-    sh_binary(name=name, **kw)
+def shar_binary(name, args=None, deps=[], data=[], **kw):
+    sh_binary(name=name, deps=deps, data=data, **kw)
     gen_shar_stub(
         name="{}_stub".format(name),
         src=":{}".format(name),
