@@ -10,6 +10,7 @@ set -e
 command -v awk >/dev/null 2>&1 || ( echo "no awk" ; exit 1)
 command -v tar >/dev/null 2>&1 || ( echo "no tar" ; exit 1)
 
+readonly ORIG_PWD="${PWD}"
 DIR="$(mktemp -d -t shar.binary-XXXXXX)"
 
 function cleanup() {
@@ -31,6 +32,9 @@ RUNFILES_DIR="$PWD/{{RUNFILES_LOCAL_PATH}}"
 )
 
 cd "${RUNFILES_DIR}/_main"
-RUNFILES_DIR="${RUNFILES_DIR}" "{{BINARY_RELATIVE_PATH}}" {{ARGS}} ${@}
+env \
+	RUNFILES_DIR="${RUNFILES_DIR}" \
+	ORIG_PWD="${ORIG_PWD}" \
+	"{{BINARY_RELATIVE_PATH}}" {{ARGS}} ${@}
 exit 0
 __ARCHIVE_FOLLOWS__
