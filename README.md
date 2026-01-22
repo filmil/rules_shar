@@ -1,7 +1,7 @@
 # Bazel rules for creating self-extracting archives (shar)
 
 [![Test](https://github.com/filmil/rules_shar/actions/workflows/test.yml/badge.svg)](https://github.com/filmil/rules_shar/actions/workflows/test.yml)
-[![Publish BCR](https://github.com/filmil/rules_shar/actions/workflows/publish-bcr.yml/badge.svg)](https://github.com/filmil/rules_shar/actions/workflows/publish-bcr.yml)
+[![Publish to BCR](https://github.com/filmil/rules_shar/actions/workflows/publish-bcr.yml/badge.svg)](https://github.com/filmil/rules_shar/actions/workflows/publish-bcr.yml)
 [![Tag and Release](https://github.com/filmil/rules_shar/actions/workflows/tag-and-release.yml/badge.svg)](https://github.com/filmil/rules_shar/actions/workflows/tag-and-release.yml)
 
 This repository provides Bazel rules for creating self-extracting archives
